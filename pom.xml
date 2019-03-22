@@ -102,6 +102,11 @@
       <artifactId>popper.js</artifactId>
       <version>1.14.6</version>
     </dependency>
+    <dependency>
+      <groupId>org.webjars.bower</groupId>
+      <artifactId>Processing.js</artifactId>
+      <version>1.4.16</version>
+    </dependency>
 
     <dependency>
       <groupId>javax.servlet.jsp.jstl</groupId>

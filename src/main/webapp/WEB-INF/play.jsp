@@ -83,7 +83,7 @@
     <!--[if lt IE 9]>
       <script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
     <![endif]-->
-    <script src="processing.js" type="text/javascript"></script>
+    <script src='webjars/Processing.js/1.4.16/processing.min.js'></script>
     <script src="start.js" type="text/javascript"></script>
     <script src="logging.js" type="text/javascript"></script>
     <script type="text/javascript">
