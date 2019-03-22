@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+    <jsp:include page="imports.jsp" />
 		<title>Highscores</title>
 		<style>
 		body

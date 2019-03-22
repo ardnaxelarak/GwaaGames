@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+  <jsp:include page="imports.jsp" />
   <title>Gwaa Games -- ERROR</title>
 </head>
 <body>
