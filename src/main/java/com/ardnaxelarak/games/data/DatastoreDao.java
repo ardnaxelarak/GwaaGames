@@ -122,11 +122,11 @@ public class DatastoreDao {
     subgameMap = map.build();
   }
 
-  public ImmutableList<ScoreEntry> getScores(String subgame) {
+  public ImmutableList<ScoreEntry> getScores(String subgame, int sort) {
     Query<Entity> query = Query.newEntityQueryBuilder()
         .setKind("Score")
         .setFilter(PropertyFilter.hasAncestor(subgameKeyFactory.newKey(subgame)))
-        .setOrderBy(OrderBy.desc("column0"), OrderBy.asc("time"))
+        .setOrderBy(OrderBy.desc("column" + sort), OrderBy.asc("time"))
         .build();
 
     QueryResults<Entity> qResult = datastore.run(query);

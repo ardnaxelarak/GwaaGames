@@ -45,9 +45,28 @@ public class ScoreServlet extends HttpServlet {
 
     Subgame subgame = subgameMap.get(subgameString);
 
+    String sortString = request.getParameter("sort");
+    int requestedSort = -1;
+    int sort = subgame.getDefaultSort();
+    if (sortString != null) {
+      try {
+        requestedSort = Integer.parseInt(sortString);
+        if (requestedSort >= 0 && requestedSort < subgame.getColumns().length) {
+          sort = requestedSort;
+        } else {
+          requestedSort = -1;
+        }
+      } catch (NumberFormatException e) {
+        // oh well, we tried
+      }
+    }
+
     request.setAttribute("subgame", subgame);
-    request.setAttribute("scores", dao.getScores(subgame.getId()));
+    request.setAttribute("scores", dao.getScores(subgame.getId(), sort));
     request.setAttribute("display", request.getParameter("display"));
+    if (requestedSort >= 0) {
+      request.setAttribute("sortlink", "&sort=" + requestedSort);
+    }
     request.getRequestDispatcher("/WEB-INF/scores.jsp").forward(request, response);
   }
 
