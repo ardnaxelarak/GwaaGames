@@ -1,5 +1,7 @@
 package com.ardnaxelarak.games;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import com.ardnaxelarak.games.data.DatastoreDao;
 import com.ardnaxelarak.games.data.ScoreEntry;
 import com.ardnaxelarak.games.data.Subgame;
@@ -8,7 +10,10 @@ import com.google.common.collect.ImmutableMap;
 import com.google.cloud.Timestamp;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +22,31 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ScoreServlet", value = "/scores")
 public class ScoreServlet extends HttpServlet {
+  private static final BinaryOperator<ScoreEntry> MERGER =
+      new BinaryOperator<ScoreEntry>() {
+        @Override
+        public ScoreEntry apply(ScoreEntry a, ScoreEntry b) {
+          checkArgument(a.getSubgame().equals(b.getSubgame()));
+          checkArgument(a.getName().equals(b.getName()));
+          checkArgument(a.getColumns().size() == b.getColumns().size());
+
+          Timestamp minTimestamp =
+              a.getTimestamp().compareTo(b.getTimestamp()) < 0 ?
+                  a.getTimestamp() : b.getTimestamp();
+
+          List<Integer> maxColumns = new ArrayList<>();
+          for (int i = 0; i < a.getColumns().size(); i++) {
+            maxColumns.add(Math.max(a.getColumns().get(i), b.getColumns().get(i)));
+          }
+
+          return new ScoreEntry(
+              a.getSubgame(),
+              a.getName(),
+              minTimestamp,
+              maxColumns);
+        }
+      };
+
   @Override
   public void init() throws ServletException {
     if (getServletContext().getAttribute("dao") == null) {
@@ -61,8 +91,29 @@ public class ScoreServlet extends HttpServlet {
       }
     }
 
+    ImmutableList<ScoreEntry> scores = dao.getScores(subgame.getId(), sort);
+
+    String display = request.getParameter("display");
+    if (display == null) {
+      display = "topten";
+    }
+
+    if (display.toLowerCase().equals("all")) {
+      // we already fetched everything, nothing to do
+    } else if (display.toLowerCase().equals("each")) {
+      ImmutableMap<String, ScoreEntry> scoreMap =
+          scores.stream()
+              .collect(ImmutableMap.toImmutableMap(
+                    ScoreEntry::getName, Function.identity(), MERGER));
+      scores = scoreMap.values().stream()
+          .sorted(getComparator(sort))
+          .collect(ImmutableList.toImmutableList());
+    } else { // default to top ten
+      scores = scores.stream().limit(10).collect(ImmutableList.toImmutableList());
+    }
+
     request.setAttribute("subgame", subgame);
-    request.setAttribute("scores", dao.getScores(subgame.getId(), sort));
+    request.setAttribute("scores", scores);
     request.setAttribute("display", request.getParameter("display"));
     if (requestedSort >= 0) {
       request.setAttribute("sortlink", "&sort=" + requestedSort);
@@ -116,6 +167,12 @@ public class ScoreServlet extends HttpServlet {
     dao.writeScoreEntry(entry);
 
     response.getWriter().println("Success");
+  }
+
+  private static Comparator<ScoreEntry> getComparator(int sortIndex) {
+    return Comparator.<ScoreEntry>comparingInt(entry -> entry.getColumns().get(sortIndex))
+        .reversed()
+        .thenComparing(Comparator.comparing(ScoreEntry::getTimestamp));
   }
 }
 
