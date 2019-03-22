@@ -1,0 +1,24 @@
+tetris,tetris,Tetris,T,1,Lines,Score
+snake,snake,"360 Degree Snake",Sn,0,Score
+blocks,blocks5_5,"5 x 5 Blocks",5B,1,Lines,Score
+blocks,blocks6_6,"6 x 6 Blocks",6B,1,Lines,Score
+blocks,blocks7_7,"7 x 7 Blocks",7B,1,Lines,Score
+blocks,blocks8_8,"8 x 8 Blocks",8B,1,Lines,Score
+blocks,blocks9_9,"9 x 9 Blocks",9B,1,Lines,Score
+blocks,blocks5_8,"5 x 8 Blocks",58B,1,Lines,Score
+robots,robots,Robots,R,0,Score
+invaders,invaders,Invaders,In,0,Score,Level
+lasers,lasers,Lasers,L,0,Score
+kiwirun,kiwirun,Kiwi-Run,K-R,0,Score,Level
+circlejump,circlejump_arcade,"CircleJump: Arcade",CJa,0,Score
+circlejump,circlejump_timed,"CircleJump: Timed",CJt,0,Score
+circlejump,circlejump_strategy,"CircleJump: Strategy",CJs,0,Score
+centipede,centipede,Centipede,Cp,0,Score,Level
+circlebouncer,circlebouncer,"Circle Bouncer",CB,0,Score,Level
+orderring,orderring,"OrderRing",OR,0,Score
+hexblocks,hexblocks_3,"HexBlocks 3",HB3,1,Lines,Score
+hexblocks,hexblocks_4,"HexBlocks 4",HB4,1,Lines,Score
+hexblocks,hexblocks_5,"HexBlocks 5",HB5,1,Lines,Score
+hexblocks,hexblocks_6,"HexBlocks 6",HB6,1,Lines,Score
+hexblocks,hexblocks_7,"HexBlocks 7",HB7,1,Lines,Score
+hexblocks,hexblocks_8,"HexBlocks 8",HB8,1,Lines,Score

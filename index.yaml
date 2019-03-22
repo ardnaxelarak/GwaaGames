@@ -1,0 +1,14 @@
+indexes:
+
+- kind: Score
+  ancestor: yes
+  properties:
+  - name: column0
+    direction: desc
+  - name: time
+- kind: Score
+  ancestor: yes
+  properties:
+  - name: column1
+    direction: desc
+  - name: time
