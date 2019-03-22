@@ -92,7 +92,7 @@
 			</tr>
       <c:forEach var="score" items="${scores}" varStatus="loop">
         <tr>
-          <td class="right">${loop.index}</td>
+          <td class="right">${loop.index + 1}</td>
           <td class="left">${score.name}</td>
           <c:forEach var="column" items="${score.columns}">
             <td class="left">${column}</td>
