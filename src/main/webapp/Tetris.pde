@@ -724,7 +724,8 @@ boolean tryRotateLeft()
 void endGame()
 {
     gameend = true;
-    writelog("scores/" + gamename + "-scores", name, lines, score);
+    postScore(gamename, name, lines, score);
+    // writelog("scores/" + gamename + "-scores", name, lines, score);
 //    String[] scores;
 //    try
 //    {

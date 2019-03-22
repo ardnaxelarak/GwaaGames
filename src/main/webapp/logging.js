@@ -38,6 +38,18 @@ function writelog(filename, user)
 	xhr.send(parameters);
 }
 
+function postScore(gamename, user) {
+  var args = Array.prototype.slice.call(arguments, 2);
+  var xhr = createXHR();
+  var parameters = "game=" + gamename + "&name=" + user.trim();
+  for (var i = 0; i < args.length; i++) {
+    parameters += "&column" + i + "=" + args[i];
+  }
+  xhr.open("POST", "scores", true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+	xhr.send(parameters);
+}
+
 function writecomment(filename, user, comment)
 {
 	var xhr = createXHR();
