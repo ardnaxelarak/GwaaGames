@@ -1,0 +1,260 @@
+{
+  "tetris": {
+    "game": "tetris",
+    "index": 0,
+    "display": "Tetris",
+    "shortName": "T",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "snake": {
+    "game": "snake",
+    "index": 1,
+    "display": "360 Degree Snake",
+    "shortName": "Sn",
+    "defaultSort": 0,
+    "columns": [
+      "Score"
+    ]
+  },
+  "blocks5_5": {
+    "game": "blocks",
+    "index": 2,
+    "display": "5 x 5 Blocks",
+    "shortName": "5B",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "blocks6_6": {
+    "game": "blocks",
+    "index": 3,
+    "display": "6 x 6 Blocks",
+    "shortName": "6B",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "blocks7_7": {
+    "game": "blocks",
+    "index": 4,
+    "display": "7 x 7 Blocks",
+    "shortName": "7B",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "blocks8_8": {
+    "game": "blocks",
+    "index": 5,
+    "display": "8 x 8 Blocks",
+    "shortName": "8B",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "blocks9_9": {
+    "game": "blocks",
+    "index": 6,
+    "display": "9 x 9 Blocks",
+    "shortName": "9B",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "blocks5_8": {
+    "game": "blocks",
+    "index": 7,
+    "display": "5 x 8 Blocks",
+    "shortName": "58B",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "robots": {
+    "game": "robots",
+    "index": 8,
+    "display": "Robots",
+    "shortName": "R",
+    "defaultSort": 0,
+    "columns": [
+      "Score"
+    ]
+  },
+  "invaders": {
+    "game": "invaders",
+    "index": 9,
+    "display": "Invaders",
+    "shortName": "In",
+    "defaultSort": 0,
+    "columns": [
+      "Score",
+      "Level"
+    ]
+  },
+  "lasers": {
+    "game": "lasers",
+    "index": 10,
+    "display": "Lasers",
+    "shortName": "L",
+    "defaultSort": 0,
+    "columns": [
+      "Score"
+    ]
+  },
+  "kiwirun": {
+    "game": "kiwirun",
+    "index": 11,
+    "display": "Kiwi-Run",
+    "shortName": "K-R",
+    "defaultSort": 0,
+    "columns": [
+      "Score",
+      "Level"
+    ]
+  },
+  "circlejump_arcade": {
+    "game": "circlejump",
+    "index": 12,
+    "display": "CircleJump: Arcade",
+    "shortName": "CJa",
+    "defaultSort": 0,
+    "columns": [
+      "Score"
+    ]
+  },
+  "circlejump_timed": {
+    "game": "circlejump",
+    "index": 13,
+    "display": "CircleJump: Timed",
+    "shortName": "CJt",
+    "defaultSort": 0,
+    "columns": [
+      "Score"
+    ]
+  },
+  "circlejump_strategy": {
+    "game": "circlejump",
+    "index": 14,
+    "display": "CircleJump: Strategy",
+    "shortName": "CJs",
+    "defaultSort": 0,
+    "columns": [
+      "Score"
+    ]
+  },
+  "centipede": {
+    "game": "centipede",
+    "index": 15,
+    "display": "Centipede",
+    "shortName": "Cp",
+    "defaultSort": 0,
+    "columns": [
+      "Score",
+      "Level"
+    ]
+  },
+  "circlebouncer": {
+    "game": "circlebouncer",
+    "index": 16,
+    "display": "Circle Bouncer",
+    "shortName": "CB",
+    "defaultSort": 0,
+    "columns": [
+      "Score",
+      "Level"
+    ]
+  },
+  "orderring": {
+    "game": "orderring",
+    "index": 17,
+    "display": "OrderRing",
+    "shortName": "OR",
+    "defaultSort": 0,
+    "columns": [
+      "Score"
+    ]
+  },
+  "hexblocks_3": {
+    "game": "hexblocks",
+    "index": 18,
+    "display": "Hexblocks 3",
+    "shortName": "HB3",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "hexblocks_4": {
+    "game": "hexblocks",
+    "index": 19,
+    "display": "Hexblocks 4",
+    "shortName": "HB4",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "hexblocks_5": {
+    "game": "hexblocks",
+    "index": 20,
+    "display": "Hexblocks 5",
+    "shortName": "HB5",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "hexblocks_6": {
+    "game": "hexblocks",
+    "index": 21,
+    "display": "Hexblocks 6",
+    "shortName": "HB6",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "hexblocks_7": {
+    "game": "hexblocks",
+    "index": 22,
+    "display": "Hexblocks 7",
+    "shortName": "HB7",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  },
+  "hexblocks_8": {
+    "game": "hexblocks",
+    "index": 23,
+    "display": "Hexblocks 8",
+    "shortName": "HB8",
+    "defaultSort": 1,
+    "columns": [
+      "Lines",
+      "Score"
+    ]
+  }
+}
+
