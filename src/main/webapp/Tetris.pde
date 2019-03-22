@@ -725,18 +725,6 @@ void endGame()
 {
     gameend = true;
     postScore(gamename, name, lines, score);
-    // writelog("scores/" + gamename + "-scores", name, lines, score);
-//    String[] scores;
-//    try
-//    {
-//        scores = loadStrings("tetris.highscores");
-//    }
-//    catch (Exception e)
-//    {
-//        scores = new String[0];
-//    }
-//    scores = append(scores, name + " " + lines + " " + score);
-//    saveStrings("tetris.highscores", scores);
     try
     {
         scores = loadStrings(gamename + ".best");

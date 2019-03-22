@@ -231,8 +231,9 @@ void endGame()
     ttr = 50;
     gameend = true;
 
-    if (score > 0)
-        writelog("scores/" + gamename + "-scores", name, score);
+    if (score > 0) {
+        postScore(gamename, name, score);
+    }
 }
 
 void keyPressed()

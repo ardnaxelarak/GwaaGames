@@ -305,7 +305,7 @@ void endGame()
     ttr = 50;
     gameend = true;
 
-    writelog("scores/" + gamename + "-scores", name, score);
+    postScore(gamename, name, score);
     try
     {
         scores = loadStrings(gamename + ".best");

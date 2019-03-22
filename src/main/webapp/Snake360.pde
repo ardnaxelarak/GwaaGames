@@ -166,8 +166,9 @@ void makemove()
 void endGame()
 {
     gameend = true;
-    if (score > 0)
-        writelog("scores/" + gamename + "-scores", name, score);
+    if (score > 0) {
+        postScore(gamename, name, score);
+    }
 }
 
 void placefood()
