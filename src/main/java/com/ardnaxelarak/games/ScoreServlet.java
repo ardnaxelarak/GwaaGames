@@ -112,6 +112,19 @@ public class ScoreServlet extends HttpServlet {
       scores = scores.stream().limit(10).collect(ImmutableList.toImmutableList());
     }
 
+    request.setAttribute(
+        "prevSubgame",
+        subgameMap.values().stream()
+            .filter(subgameItem -> subgameItem.getIndex() == subgame.getIndex() - 1)
+            .findAny()
+            .orElse(null));
+    request.setAttribute(
+        "nextSubgame",
+        subgameMap.values().stream()
+            .filter(subgameItem -> subgameItem.getIndex() == subgame.getIndex() + 1)
+            .findAny()
+            .orElse(null));
+
     request.setAttribute("subgame", subgame);
     request.setAttribute("scores", scores);
     request.setAttribute("display", request.getParameter("display"));
