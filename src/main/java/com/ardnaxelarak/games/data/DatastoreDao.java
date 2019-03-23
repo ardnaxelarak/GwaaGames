@@ -32,7 +32,6 @@ public class DatastoreDao {
   private Datastore datastore;
   private KeyFactory gameKeyFactory;
   private KeyFactory subgameKeyFactory;
-  private KeyFactory scoreKeyFactory;
   private ImmutableMap<String, Game> gameMap;
   private ImmutableMap<String, Subgame> subgameMap;
 
@@ -52,7 +51,6 @@ public class DatastoreDao {
     }
     gameKeyFactory = datastore.newKeyFactory().setKind("Game");
     subgameKeyFactory = datastore.newKeyFactory().setKind("Subgame");
-    scoreKeyFactory = datastore.newKeyFactory().setKind("Score");
   }
 
   public ImmutableMap<String, Game> getGameMap() {
@@ -152,7 +150,10 @@ public class DatastoreDao {
 
   public void writeScoreEntry(ScoreEntry entry) {
     IncompleteKey key =
-        scoreKeyFactory.addAncestor(PathElement.of("Subgame", entry.getSubgame())).newKey();
+        datastore.newKeyFactory()
+            .setKind("Score")
+            .addAncestor(PathElement.of("Subgame", entry.getSubgame()))
+            .newKey();
     FullEntity.Builder entity =
         FullEntity.newBuilder(key)
             .set("name", entry.getName())
