@@ -226,7 +226,9 @@ void mouseClicked()
     }
     else if (gameend)
         newgame();
-}class Circle
+}
+
+class Circle
 {
     public float xc, yc;
     public Circle(float xc, float yc)
