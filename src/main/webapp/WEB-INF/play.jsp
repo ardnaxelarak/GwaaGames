@@ -15,11 +15,11 @@
         line-height: 1.5em;
       }
       a img
-      { 
+      {
         border: 0px solid transparent;
       }
       a, a:link, a:visited, a:active, a:hover
-      { 
+      {
         color: #cdcdcd; text-decoration: underline;
       }
       h1
@@ -30,16 +30,16 @@
       }
       canvas
       {
-        display: block; 
+        display: block;
         outline: 0px;
         margin: 0 auto;
-        margin-bottom: 1.5em; 
+        margin-bottom: 1.5em;
       }
       #content
-      { 
+      {
         margin: 50px auto 0px auto; padding: 25px 25px 15px 25px;
         width: 800px; min-width: 300px; overflow: auto;
-        border-left: 1px solid #444; border-top: 1px solid #444; 
+        border-left: 1px solid #444; border-top: 1px solid #444;
         border-right: 1px solid #333; border-bottom: 1px solid #333;
         background-color: #3d3d3d;
       }
@@ -47,7 +47,7 @@
       {
         margin: 50px auto 0px auto; padding: 25px 25px 25px 25px;
         width: 450px; min-width: 300px; overflow: auto;
-        border-left: 1px solid #444; border-top: 1px solid #444; 
+        border-left: 1px solid #444; border-top: 1px solid #444;
         border-right: 1px solid #333; border-bottom: 1px solid #333;
         background-color: #3d3d3d;
       }
@@ -75,7 +75,7 @@
       {
         margin: 10px auto 0px auto; padding: 15px 15px 15px 15px;
         width: 400px; min-width: 300px; overflow: auto;
-        border-left: 1px solid #444; border-top: 1px solid #444; 
+        border-left: 1px solid #444; border-top: 1px solid #444;
         border-right: 1px solid #333; border-bottom: 1px solid #333;
         background-color: #606060;
       }
@@ -83,9 +83,11 @@
     <!--[if lt IE 9]>
       <script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
     <![endif]-->
-    <script src='webjars/Processing.js/1.4.16/processing.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
     <script src="start.js" type="text/javascript"></script>
+    <script src="canvas.js" type="text/javascript"></script>
     <script src="logging.js" type="text/javascript"></script>
+    <script src="sketches/${game.sketch}.js" type="text/javascript"></script>
     <script type="text/javascript">
       function submitted()
       {
@@ -115,11 +117,7 @@
   <body>
     <div id="content">
       <h1>${game.display}</h1>
-      <div style="text-align:center;">
-        <canvas id="${game.sketch}" data-processing-sources="${game.sketch}.pde" width="730" height="550">
-          <p>Your browser does not support the canvas tag.</p>
-          <!-- Note: you can put any alternative content here. -->
-        </canvas>
+      <div style="text-align:center;" id="p5container">
         <noscript>
           <p>JavaScript is required to view the contents of this page.</p>
         </noscript>
