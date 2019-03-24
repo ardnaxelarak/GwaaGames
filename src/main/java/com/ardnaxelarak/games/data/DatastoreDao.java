@@ -1,6 +1,7 @@
 package com.ardnaxelarak.games.data;
 
 import com.google.appengine.api.utils.SystemProperty;
+import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.cloud.datastore.BaseEntity;
@@ -140,7 +141,8 @@ public class DatastoreDao {
       list.add(
           new ScoreEntry(
               subgame,
-              entity.getString("name"),
+              getString(entity, "name", null),
+              getString(entity, "uid", null),
               entity.getTimestamp("time"),
               columnList));
     }
@@ -156,8 +158,13 @@ public class DatastoreDao {
             .newKey();
     FullEntity.Builder entity =
         FullEntity.newBuilder(key)
-            .set("name", entry.getName())
             .set("time", entry.getTimestamp());
+    if (!Strings.isNullOrEmpty(entry.getName())) {
+      entity.set("name", entry.getName());
+    }
+    if (!Strings.isNullOrEmpty(entry.getUid())) {
+      entity.set("uid", entry.getUid());
+    }
     int index = 0;
     for (int col : entry.getColumns()) {
       entity.set("column" + index, col);
@@ -165,5 +172,9 @@ public class DatastoreDao {
     }
 
     datastore.put(entity.build());
+  }
+
+  private static String getString(Entity entity, String key, String def) {
+    return entity.contains(key) ? entity.getString(key) : def;
   }
 }

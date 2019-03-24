@@ -269,7 +269,7 @@ Start.prototype.setInst = function() {
 Start.prototype.saveName = function() {
   var options = Array(this.pname);
   this.processing.saveStrings("name", options);
-  window.user = this.pname;
+  // window.user = this.pname;
   this.page.changename(this.pname);
   this.setInst();
 }
@@ -285,7 +285,7 @@ Start.prototype.loadName = function() {
   } catch (e) {
     this.pname = "";
   }
-  window.user = this.pname;
+  // window.user = this.pname;
   this.page.changename(this.pname);
   this.setInst();
 }
