@@ -4,7 +4,7 @@
     <button class="btn btn-danger btn-signout" type="button">Sign Out</button>
   </span>
   <span class="navbar-brand name-span">
-    <a class="display-name"></a> (<a class="update-name-link" href="#">change</a>)
+    <a class="display-name"></a> (<a class="update-name-link" href="#">change display name</a>)
   </span>
 </nav>
 
