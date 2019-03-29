@@ -50,6 +50,7 @@
 		</style>
 	</head>
 	<body>
+    <jsp:include page="authbar.jsp" />
     <h1>${subgame.display}</h1>
 		<p class="center">Display:
       <a href="scores?game=${subgame.id}&display=all${sortlink}">All</a>, 

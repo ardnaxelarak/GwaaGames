@@ -163,28 +163,11 @@ class Page {
 class StartPage {
   constructor(sketch, font) {
     this.page = new Page(sketch);
-    var nameTxt = new TextElement(sketch, font, "Name: ", 20, 15);
-    var nameHelpTxt =
-        new TextElement(
-            sketch,
-            font,
-            "(use backspace or left arrow to change)",
-            20,
-            35);
-    this.nameEl = new TextElement(sketch, font, "", 65, 15);
-    this.nameEl.setColor(sketch.color(255, 0, 0));
     this.instEl =
         new TextElement(
             sketch, font, "Loading...", sketch.width / 2, 170);
     this.instEl.setAlign(sketch.CENTER, sketch.CENTER);
-    this.page.addElement(nameTxt);
-    this.page.addElement(nameHelpTxt);
-    this.page.addElement(this.nameEl);
     this.page.addElement(this.instEl);
-  }
-
-  changename(newname) {
-    this.nameEl.setText(newname);
   }
 
   siText(newtext) {
@@ -211,7 +194,6 @@ class StartPage {
 class Start {
   constructor(sketch, font, ggLogo, gamename) {
     this.alttext = "";
-    this.pname = "";
     this.valid = false;
     this.font = font;
     window.gamename = gamename;
@@ -232,15 +214,13 @@ class Start {
         0);
     this.logoEl.setAlign(true);
     this.page.addElement(this.logoEl);
-    this.loadName();
-    this.saveName();
     this.oname = "CondSIE";
   }
 
   setInst() {
-    if (this.pname === "") {
-      this.page.siText("Please enter your name.");
-      this.valid = false;
+    if (!window.user) {
+      this.page.siText("Sign in to track high scores!");
+      this.valid = true;
     } else {
       this.page.siText(this.alttext);
       this.valid = true;
@@ -254,30 +234,6 @@ class Start {
     }
     this.page.siPos(this.xc, newy);
     this.logoEl.setPos(this.sketch.width - this.ggLogo.width, 0);
-  }
-
-  saveName() {
-    window.user = this.pname;
-    this.page.changename(this.pname);
-    this.setInst();
-  }
-
-  loadName() {
-    /*
-    try {
-      var options = this.sketch.loadStrings("name");
-      if (options.length < 1) {
-        this.pname = "";
-      } else {
-        this.pname = options[0].split("_").join(" ");
-      }
-    } catch (e) {
-      this.pname = "";
-    }
-    window.user = this.pname;
-    this.page.changename(this.pname);
-    this.setInst();
-    */
   }
 
   setLogo(image) {
@@ -312,31 +268,6 @@ class Start {
         this.sketch, im, imhover, xc, yc, selaction, this.isValid, this);
     this.page.addElement(csie);
   }
-
-  keyTyped() {
-    var key = this.sketch.key;
-    if ((key >= 'a' && key <= 'z')
-        || (key >= 'A' && key <= 'Z')
-        || (key >= '0' && key <= '9')
-        || (key == '-')) {
-      this.pname += key;
-    }
-    if ((key == ' ' || key == '_') && this.pname.length > 0) {
-      this.pname += key;
-    }
-    this.saveName();
-  }
-
-  keyPressed() {
-    var kc = this.sketch.keyCode;
-    if ((kc == this.sketch.BACKSPACE || kc == this.sketch.DELETE
-        || kc == this.sketch.LEFT_ARROW) && this.pname.length > 0) {
-      this.pname = this.pname.slice(0, -1);
-    }
-    this.saveName();
-  }
-
-  mouseMoved() {}
 
   mouseClicked() {
     var selaction = this.page.mouseClicked();

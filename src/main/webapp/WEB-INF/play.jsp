@@ -115,6 +115,7 @@
     </script>
   </head>
   <body>
+    <jsp:include page="authbar.jsp" />
     <div id="content">
       <h1>${game.display}</h1>
       <div style="text-align:center;" id="p5container">

@@ -315,7 +315,7 @@ void endGame()
     ttr = 50;
     gameend = true;
 
-    postScore(gamename, name, score, level);
+    postScore(gamename, score, level);
     try
     {
         scores = loadStrings(gamename + ".best");
@@ -335,11 +335,7 @@ void keyPressed()
 {
     if (keyCode == CONTROL)
         ctrl = true;
-    if (!started)
-    {
-        startscreen.keyPressed();
-    }
-    else if (started && !gameend)
+    if (started && !gameend)
     {
         if (key == ' ')
         {
@@ -395,7 +391,6 @@ void mouseClicked()
         if (startscreen.mouseClicked() != null)
         {
             newgame();
-            name = startscreen.pname;
         }
     }
     if (gameend && ttr <= 0)
@@ -404,13 +399,6 @@ void mouseClicked()
     }
 }
 
-void mouseMoved()
-{
-    if (!started)
-    {
-        startscreen.mouseMoved();
-    }
-}
 class Worm extends Item
 {
     public Worm(float xc, float yc)

@@ -24,7 +24,6 @@ int score;
 int curfade;
 int ttr;
 boolean ctrl;
-String name;
 String[] scores;
 color[] colors;
 PFont font32, font12;
@@ -588,7 +587,7 @@ void endGame()
     ttr = 50;
     gameend = true;
 
-    postScore(gamename, name, lines, score);
+    postScore(gamename, lines, score);
     try
     {
         scores = loadStrings(gamename + ".best");
@@ -610,11 +609,7 @@ void keyPressed()
 {
     if (keyCode == CONTROL)
         ctrl = true;
-    if (!started)
-    {
-        startscreen.keyPressed();
-    }
-    else
+    if (started)
     {
         if (keyCode == 114)
         {
@@ -664,7 +659,6 @@ void mouseClicked()
         int sizesel = startscreen.mouseClicked();
         if (sizesel != null)
         {
-            name = startscreen.pname;
             if (sizesel == 5)
                 newgame(5, 8);
             else
@@ -732,10 +726,6 @@ void checkMouse()
 
 void mouseMoved()
 {
-    if (!started)
-    {
-        startscreen.mouseMoved();
-    }
     if (started && !gameend)
     {
         checkMouse();

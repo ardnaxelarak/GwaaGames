@@ -21,7 +21,6 @@ int ttr;
 int maxspeed;
 float maxval;
 boolean ctrl, moveleft, moveright, moveup, movedown, space;
-String name;
 color[] colors;
 int[] actionindex;
 PFont font32, font24, font12;
@@ -232,7 +231,7 @@ void endGame()
     gameend = true;
 
     if (score > 0) {
-        postScore(gamename, name, score);
+        postScore(gamename, score);
     }
 }
 
@@ -240,11 +239,7 @@ void keyPressed()
 {
     if (keyCode == CONTROL)
         ctrl = true;
-    if (!started)
-    {
-        startscreen.keyPressed();
-    }
-    else if (started && !gameend)
+    if (started && !gameend)
     {
         if (key == ' ')
         {
@@ -303,7 +298,6 @@ void mouseClicked()
         if (modesel != null)
         {
             newgame();
-            name = startscreen.pname;
         }
     }
     if (gameend && ttr <= 0)
@@ -330,7 +324,6 @@ void mouseReleased()
         if (modesel != null)
         {
             newgame();
-            name = startscreen.pname;
         }
     }
     else if (started && you.placed && !you.rolling())
@@ -343,10 +336,6 @@ void mouseReleased()
 
 void mouseMoved()
 {
-    if (!started)
-    {
-        startscreen.mouseMoved();
-    }
     if (started && you.placed && !you.rolling())
     {
         float xd = mouseX - dispX - you.xc;

@@ -7,16 +7,19 @@ import java.util.List;
 public class ScoreEntry {
   private String subgame;
   private String name;
+  private String uid;
   private Timestamp timestamp;
   private ImmutableList<Integer> columns;
 
   public ScoreEntry(
       String subgame,
       String name,
+      String uid,
       Timestamp timestamp,
       List<Integer> columns) {
     this.subgame = subgame;
     this.name = name;
+    this.uid = uid;
     this.timestamp = timestamp;
     this.columns = ImmutableList.copyOf(columns);
   }
@@ -27,6 +30,10 @@ public class ScoreEntry {
 
   public String getName() {
     return name;
+  }
+
+  public String getUid() {
+    return uid;
   }
 
   public Timestamp getTimestamp() {

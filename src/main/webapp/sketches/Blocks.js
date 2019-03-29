@@ -15,7 +15,6 @@ var p5sketch = function(sketch) {
   var curfade;
   var ttr;
   var ctrl;
-  var name;
   var scores;
   var colors;
   var font;
@@ -584,22 +583,14 @@ var p5sketch = function(sketch) {
     ttr = 50;
     gameend = true;
 
-    postScore(gamename, name, lines, score);
+    postScore(gamename, lines, score);
   }
-
-  sketch.keyTyped = function() {
-    if (!started) {
-      startscreen.keyTyped();
-    }
-  };
 
   sketch.keyPressed = function() {
     if (sketch.keyCode == sketch.CONTROL) {
       ctrl = true;
     }
-    if (!started) {
-      startscreen.keyPressed();
-    } else {
+    if (started) {
       if (sketch.keyCode == 114) {
         started = false;
         gameend = false;
@@ -640,7 +631,6 @@ var p5sketch = function(sketch) {
       var sizesel = startscreen.mouseClicked();
       if (sizesel != null)
       {
-        name = startscreen.pname;
         if (sizesel == 5) {
           newgame(5, 8);
         } else {
@@ -700,9 +690,7 @@ var p5sketch = function(sketch) {
   }
 
   sketch.mouseMoved = function() {
-    if (!started) {
-      startscreen.mouseMoved();
-    } else if (!gameend) {
+    if (started && !gameend) {
       checkMouse();
     }
   };

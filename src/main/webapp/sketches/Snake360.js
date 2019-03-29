@@ -11,7 +11,6 @@ var p5sketch = function(sketch) {
   var left, right, top, bottom;
   var curlength;
   var radius;
-  var name;
   var ggLogo, logo, st, stgl;
 
   sketch.preload = function() {
@@ -168,7 +167,7 @@ var p5sketch = function(sketch) {
   function endGame() {
     gameend = true;
     if (score > 0) {
-        postScore(gamename, name, score);
+        postScore(gamename, score);
     }
   }
 
@@ -178,18 +177,8 @@ var p5sketch = function(sketch) {
         sketch.random(top + 15, bottom - 15));
   }
 
-  sketch.keyTyped = function() {
-    if (!started) {
-      startscreen.keyTyped();
-    }
-  };
-
   sketch.keyPressed = function() {
-    if (!started) {
-      startscreen.keyPressed();
-      return;
-    }
-    if (!paused) {
+    if (started && !paused) {
       if (sketch.keyCode == sketch.LEFT_ARROW || sketch.key == '4' || sketch.key == 'j') {
         moveleft = true;
       }
@@ -197,7 +186,7 @@ var p5sketch = function(sketch) {
         moveright = true;
       }
     }
-    if (!gameend && sketch.key == 'p' || sketch.key == 'P') {
+    if (started && !gameend && (sketch.key == 'p' || sketch.key == 'P')) {
       paused = !paused;
     }
     if (gameend
@@ -218,16 +207,9 @@ var p5sketch = function(sketch) {
     }
   };
 
-  sketch.mouseMoved = function() {
-    if (!started) {
-      startscreen.mouseMoved();
-    }
-  };
-
   sketch.mouseClicked = function() {
     if (!started) {
       if (startscreen.mouseClicked() != null) {
-        name = startscreen.pname;
         newgame();
       }
     } else if (gameend) {

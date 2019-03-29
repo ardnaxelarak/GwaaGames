@@ -13,3 +13,5 @@ buildNumber.properties
 
 *.swp
 *~
+
+environment.sh

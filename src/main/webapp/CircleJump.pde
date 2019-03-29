@@ -31,7 +31,6 @@ int lives, time, fnumber, fupdate, jumps;
 float yspeed;
 float yangv, circrate, margin;
 boolean ctrl, moveleft, moveright, moveup, movedown, space;
-String name;
 String[] scores;
 PFont font32, font24, font12;
 
@@ -305,7 +304,7 @@ void endGame()
     ttr = 50;
     gameend = true;
 
-    postScore(gamename, name, score);
+    postScore(gamename, score);
     try
     {
         scores = loadStrings(gamename + ".best");
@@ -325,11 +324,7 @@ void keyPressed()
 {
     if (keyCode == CONTROL)
         ctrl = true;
-    if (!started)
-    {
-        startscreen.keyPressed();
-    }
-    else
+    if (started)
     {
         if (keyCode == 114)
         {
@@ -412,13 +407,6 @@ void mouseClicked()
     }
 }
 
-void mouseMoved()
-{
-    if (!started)
-    {
-        startscreen.mouseMoved();
-    }
-}
 class Circle extends Thing
 {
     float theta;

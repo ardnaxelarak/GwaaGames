@@ -13,7 +13,6 @@ var p5sketch = function(sketch) {
   var ttr;
   var updateval;
   var moveleft, moveright, moveup, movedown;
-  var name;
   var scores;
   var font;
   
@@ -202,7 +201,7 @@ var p5sketch = function(sketch) {
     ttr = 50;
     gameend = true;
 
-    postScore(gamename, name, score);
+    postScore(gamename, score);
 
     /*
     try {
@@ -220,16 +219,8 @@ var p5sketch = function(sketch) {
     */
   }
 
-  sketch.keyTyped = function() {
-    if (!started) {
-      startscreen.keyTyped();
-    }
-  }
-
   sketch.keyPressed = function() {
-    if (!started) {
-      startscreen.keyPressed();
-    } else if (started && !gameend) {
+    if (started && !gameend) {
       if (sketch.key == 'p' || sketch.key == 'P') {
         paused = !paused;
       }
@@ -247,7 +238,7 @@ var p5sketch = function(sketch) {
           movedown = true;
           break;
       }
-    } else if (gameend) {
+    } else if (started && gameend) {
       if (sketch.keyCode == sketch.RETURN 
           || sketch.keyCode == sketch.ENTER) {
         newgame();
@@ -273,18 +264,11 @@ var p5sketch = function(sketch) {
   sketch.mouseClicked = function() {
     if (!started) {
       if (startscreen.mouseClicked() != null) {
-        name = startscreen.pname;
         newgame();
       }
     }
     if (gameend && ttr <= 0) {
       newgame();
-    }
-  };
-
-  sketch.mouseMoved = function() {
-    if (!started) {
-      startscreen.mouseMoved();
     }
   };
 };
