@@ -20,9 +20,9 @@ public class SimpleScoreEntry {
     if (!Strings.isNullOrEmpty(entry.getUid()) && nameMap.containsKey(entry.getUid())) {
       name = nameMap.get(entry.getUid());
     } else if (Strings.isNullOrEmpty(entry.getName())) {
-      name = "Anonymous Gwaaer";
+      name = "Anonymous";
     } else {
-      name = "Anonymous Gwaaer: " + entry.getName();
+      name = "[[" + entry.getName() + "]]";
     }
     return new SimpleScoreEntry(name, entry.getColumns());
   }
