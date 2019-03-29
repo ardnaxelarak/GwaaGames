@@ -31,7 +31,6 @@ int robotcount;
 int safe;
 boolean ctrl;
 boolean newlevel;
-String name;
 String[] scores;
 PFont font32, font24, font12;
 
@@ -206,7 +205,7 @@ void endGame()
     ttr = 50;
     gameend = true;
 
-    postScore(gamename, name, score);
+    postScore(gamename, score);
     try
     {
         scores = loadStrings(gamename + ".best");
@@ -346,11 +345,7 @@ void keyPressed()
 {
     if (keyCode == CONTROL)
         ctrl = true;
-    if (!started)
-    {
-        startscreen.keyPressed();
-    }
-    else if (started && !gameend)
+    if (started && !gameend)
     {
         switch (key)
         {
@@ -418,7 +413,6 @@ void mouseClicked()
     {
         if (startscreen.mouseClicked() != null)
         {
-            name = startscreen.pname;
             newgame();
         }
     }
@@ -428,13 +422,6 @@ void mouseClicked()
     }
 }
 
-void mouseMoved()
-{
-    if (!started)
-    {
-        startscreen.mouseMoved();
-    }
-}
 abstract class Thing
 {
     /*

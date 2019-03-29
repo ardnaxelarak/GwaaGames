@@ -171,28 +171,11 @@ Page.prototype.mouseClicked = function() {
 
 function StartPage(processing, font12) {
   this.page = new Page(processing);
-  var nameTxt = new TextElement(processing, font12, "Name: ", 20, 15);
-  var nameHelpTxt =
-      new TextElement(
-          processing,
-          font12,
-          "(use backspace or left arrow to change)",
-          20,
-          35);
-  this.nameEl = new TextElement(processing, font12, "", 65, 15);
-  this.nameEl.setColor(processing.color(255, 0, 0));
   this.instEl =
       new TextElement(
           processing, font12, "Loading...", processing.width / 2, 170);
   this.instEl.setAlign(processing.CENTER, processing.CENTER);
-  this.page.addElement(nameTxt);
-  this.page.addElement(nameHelpTxt);
-  this.page.addElement(this.nameEl);
   this.page.addElement(this.instEl);
-}
-
-StartPage.prototype.changename = function(newname) {
-  this.nameEl.setText(newname);
 }
 
 StartPage.prototype.siText = function(newtext) {
@@ -217,7 +200,6 @@ StartPage.prototype.mouseClicked = function() {
 
 function Start(processing, font12, gamename) {
   this.alttext = "";
-  this.pname = "";
   this.valid = false;
   this.font12 = font12;
   window.gamename = gamename;
@@ -239,18 +221,16 @@ function Start(processing, font12, gamename) {
       0);
   this.logoEl.setAlign(true);
   this.page.addElement(this.logoEl);
-  this.loadName();
-  this.saveName();
   this.oname = "CondSIE";
 }
 
 Start.prototype.setInst = function() {
-  if (this.pname === "") {
-    this.page.siText("Please enter your name.");
-    this.valid = false;
-  } else if (this.images.length > 0) {
+  if (this.images.length > 0) {
     this.page.siText("Loading: please wait...");
     this.valid = false;
+  } else if (!window.user) {
+    this.page.siText("Sign in to track high scores!");
+    this.valid = true;
   } else {
     this.page.siText(this.alttext);
     this.valid = true;
@@ -264,30 +244,6 @@ Start.prototype.setInst = function() {
   }
   this.page.siPos(this.xc, newy);
   this.logoEl.setPos(this.processing.width - this.fglogo.width, 0);
-}
-
-Start.prototype.saveName = function() {
-  var options = Array(this.pname);
-  this.processing.saveStrings("name", options);
-  // window.user = this.pname;
-  this.page.changename(this.pname);
-  this.setInst();
-}
-
-Start.prototype.loadName = function() {
-  try {
-    var options = this.processing.loadStrings("name");
-    if (options.length < 1) {
-      this.pname = "";
-    } else {
-      this.pname = options[0].split("_").join(" ");
-    }
-  } catch (e) {
-    this.pname = "";
-  }
-  // window.user = this.pname;
-  this.page.changename(this.pname);
-  this.setInst();
 }
 
 Start.prototype.checkImages = function() {
@@ -347,27 +303,6 @@ Start.prototype.addButton = function(file, filehover, xc, yc, selaction) {
       this.processing, im, imhover, xc, yc, selaction, this.isValid, this);
   this.page.addElement(csie);
 }
-
-Start.prototype.keyPressed = function() {
-  var key = this.processing.key;
-  var kc = this.processing.keyCode;
-  if ((key >= 97 && key <= 122)
-      || (key >= 65 && key <= 90)
-      || (key >= 48 && key <= 57)
-      || (key == 45)) {
-    this.pname += this.processing.str(key);
-  }
-  if ((key == 32 || key == 95) && this.pname.length > 0) {
-    this.pname += this.processing.str(key);
-  }
-  if ((kc == this.processing.BACKSPACE || kc == this.processing.DELETE
-      || kc == this.processing.LEFT) && this.pname.length > 0) {
-    this.pname = this.pname.slice(0, -1);
-  }
-  this.saveName();
-}
-
-Start.prototype.mouseMoved = function() {}
 
 Start.prototype.mouseClicked = function() {
   var selaction = this.page.mouseClicked();

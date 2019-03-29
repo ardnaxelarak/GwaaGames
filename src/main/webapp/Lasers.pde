@@ -21,7 +21,6 @@ int sizesel;
 int ttr;
 int updateval;
 boolean ctrl, moveleft, moveright, moveup, movedown, space;
-String name;
 String[] scores;
 PFont font32, font24, font12;
 
@@ -206,7 +205,7 @@ void endGame()
     ttr = 50;
     gameend = true;
 
-    postScore(gamename, name, score);
+    postScore(gamename, score);
     try
     {
         scores = loadStrings(gamename + ".best");
@@ -226,11 +225,7 @@ void keyPressed()
 {
     if (keyCode == CONTROL)
         ctrl = true;
-    if (!started)
-    {
-        startscreen.keyPressed();
-    }
-    else if (started && !gameend)
+    if (started && !gameend)
     {
         if (key == ' ')
         {
@@ -281,27 +276,12 @@ void keyReleased()
 
 void mouseClicked()
 {
-    if (!started)
-    {
-        if (startscreen.mouseClicked() != null)
-        {
-            name = startscreen.pname;
-            newgame();
-        }
-    }
     if (gameend && ttr <= 0)
     {
         newgame();
     }
 }
 
-void mouseMoved()
-{
-    if (!started)
-    {
-        startscreen.mouseMoved();
-    }
-}
 class Laser
 {
     float xc, yc;

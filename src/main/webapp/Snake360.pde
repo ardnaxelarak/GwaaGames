@@ -18,7 +18,6 @@ float angle;
 float left, right, top, bottom;
 int curlength;
 float radius;
-String name;
 
 public void setup()
 {
@@ -167,7 +166,7 @@ void endGame()
 {
     gameend = true;
     if (score > 0) {
-        postScore(gamename, name, score);
+        postScore(gamename, score);
     }
 }
 
@@ -179,19 +178,14 @@ void placefood()
 
 void keyPressed()
 {
-    if (!started)
-    {
-        startscreen.keyPressed();
-        return;
-    }
-    if (!paused)
+    if (started && !paused)
     {
         if (keyCode == LEFT || key == '4' || key == 'j')
             moveleft = true;
         if (keyCode == RIGHT || key == '6' || key == 'l')
             moveright = true;
     }
-    if (!gameend && key == 'p' || key == 'P')
+    if (started && !gameend && (key == 'p' || key == 'P'))
         paused = !paused;
     if (gameend && (key == 'n' || keyCode == ENTER || keyCode == RETURN))
         newgame();
@@ -208,19 +202,12 @@ void keyReleased()
     }
 }
 
-void mouseMoved()
-{
-    if (!started)
-        startscreen.mouseMoved();
-}
-
 void mouseClicked()
 {
     if (!started)
     {
         if (startscreen.mouseClicked() != null)
         {
-            name = startscreen.pname;
             newgame();
         }
     }

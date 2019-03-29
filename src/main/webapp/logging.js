@@ -1,18 +1,17 @@
-function postScore(gamename, user) {
-  var columns = Array.prototype.slice.call(arguments, 2);
+function postScore(gamename) {
+  var columns = Array.prototype.slice.call(arguments, 1);
   if (window.user) {
     window.user.getIdToken(true).then(function(idToken) {
-      _postScore(gamename, user, idToken, columns);
+      _postScore(gamename, idToken, columns);
     });
   } else {
-    _postScore(gamename, user, null, columns);
+    _postScore(gamename, null, columns);
   }
 }
 
-function _postScore(gamename, user, idToken, columns) {
+function _postScore(gamename, idToken, columns) {
   var data = {
     game: gamename,
-    name: user.trim(),
     token: idToken,
   };
 

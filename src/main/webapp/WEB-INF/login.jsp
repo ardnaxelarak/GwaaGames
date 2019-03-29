@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Gwaa Games Authentication</title>
-    <script src="https://www.gstatic.com/firebasejs/5.5/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5/firebase-auth.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />

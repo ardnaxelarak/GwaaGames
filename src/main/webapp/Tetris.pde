@@ -724,7 +724,7 @@ boolean tryRotateLeft()
 void endGame()
 {
     gameend = true;
-    postScore(gamename, name, lines, score);
+    postScore(gamename, lines, score);
     try
     {
         scores = loadStrings(gamename + ".best");
@@ -744,11 +744,7 @@ void endGame()
 
 void keyPressed()
 {
-    if (!started)
-    {
-        startscreen.keyPressed();
-    }
-    else if (!paused && !gameend)
+    if (started && !paused && !gameend)
     {
         boolean[][] test;
         if (keyCode == LEFT || key == '4' || key == 'j')
@@ -816,7 +812,6 @@ void mouseClicked()
         if (startscreen.mouseClicked() != null)
         {
             newgame();
-            name = startscreen.pname;
         }
     }
     if (paused)
@@ -829,14 +824,6 @@ void mouseClicked()
                 colorIndex = 0;
             saveOptions();
         }
-    }
-}
-
-void mouseMoved()
-{
-    if (!started)
-    {
-        startscreen.mouseMoved();
     }
 }
 
