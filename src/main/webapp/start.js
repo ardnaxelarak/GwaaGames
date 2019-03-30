@@ -215,6 +215,7 @@ class Start {
     this.logoEl.setAlign(true);
     this.page.addElement(this.logoEl);
     this.oname = "CondSIE";
+    firebase.auth().onAuthStateChanged(this.setInst.bind(this));
   }
 
   setInst() {
