@@ -276,6 +276,13 @@ void keyReleased()
 
 void mouseClicked()
 {
+    if (!started)
+    {
+        if (startscreen.mouseClicked() != null)
+        {
+            newgame();
+        }
+    }
     if (gameend && ttr <= 0)
     {
         newgame();
