@@ -11,6 +11,9 @@ buildNumber.properties
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 
+# pasted-in content from a different project
+src/main/webapp/rglk
+
 *.swp
 *~
 
